@@ -81,6 +81,7 @@ button[type="submit"]:hover {
 }
 
 .comment_container{
+    display: none;
     position: relative;
 }
 
@@ -91,6 +92,9 @@ button[type="submit"]:hover {
     min-height: 100%;
     width: 2px;
     left: 15px;
+}
+.comment_container.opened{
+    display: block;
 }
 
 .comment_container:not(:first-child){
