@@ -1,0 +1,128 @@
+.CommentContainer{
+    margin-top: 80px;
+    margin-left: 220px;
+    margin-right: 80px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #e1dfdf;
+    float:left;
+    width:1000px;
+    overflow-y: auto;
+    height: 590px;
+}
+
+
+
+.postCommentContainer {
+    margin-top: 40px;
+    margin-left: 100px;
+    margin-right: 80px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.postCommentContent {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Form styles */
+form {
+    margin-top: 20px;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="file"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #555;
+}
+
+
+.viewcomments{
+    margin-top: 60px;
+    margin-left: 2px;
+    margin-right: 2%;
+    margin-bottom: 20px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #ada9a9;
+    float:left;
+    width:950px;
+    overflow-y: auto;
+    height: 500px; 
+}
+
+.comment_container{
+    position: relative;
+}
+
+.comment_container::before{
+    content:"";
+    background-color: rgb(86, 84, 84);
+    position: absolute;
+    min-height: 100%;
+    width: 2px;
+    left: 15px;
+}
+
+.comment_container:not(:first-child){
+    margin-left: 20px;
+    margin-top: 2.5rem;
+}
+
+.comment_card{
+    margin-left: 20px;
+    margin-top: 5px;
+    padding: 25px;
+    background-color: rgb(92, 94, 96);
+    border: 1px solid rgba(8, 0, 0, 0.3);
+    border-radius: 0.5rem;
+    min-width: 80%;
+    box-shadow: (0 0 50px rgba(240, 235, 235, 0.3));
+    height: auto;
+}
+
+.comment_card h3, .comment_card p{
+    margin-bottom: 1px;
+}
+
+.comment_footer{
+    display: flex;
+    font-size: 14px;
+    opacity: .6px;
+    gap: 30px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.show_replies{
+    cursor: pointer;
+}

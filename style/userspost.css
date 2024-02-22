@@ -92,3 +92,23 @@
     margin-top: 10px;
     margin-left: 10px;
 }
+/*
+.commentbtn button{
+    padding: 15px 20px;
+    color: rgb(25, 25, 25);
+    background-color: rgb(195, 189, 180);
+    border-radius: 10px;
+    margin-top: 20px;
+}
+*/
+
+.blogPostComment{
+    margin-top: 30px;
+}
+
+.blogPostComment .commentbtn button{
+    padding: 15px 20px;
+    color: rgb(25, 25, 25);
+    background-color: rgb(97, 95, 92);
+    border-radius: 10px;
+}

@@ -296,6 +296,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 plike.textContent = post.likes; // Text for like count
                 liketext.appendChild(plike);
 
+                
                 blogPostInfo.appendChild(blogPostDate);
                 blogPostInfo.appendChild(blogPostTitle);
                 blogPostInfo.appendChild(blogPostContent);
@@ -303,10 +304,24 @@ document.addEventListener("DOMContentLoaded", function() {
                 blogPostInfo.appendChild(blogPostlike);
                 blogPostInfo.appendChild(liketext);
 
+//comment button
+                const blogPostComment = document.createElement('div');
+                blogPostComment.classList.add('blog_post_comment');
+                const commentbtn = document.createElement('button');
+                commentbtn.classList.add('commentbtn');
+                commentbtn.textContent = 'comment'; 
+                blogPostComment.appendChild(commentbtn);
+
+                //location.href = "/comments";
+
+                commentbtn.addEventListener('click', async () => {
+                    location.href = "/comments";
+                });
+                blogPostInfo.appendChild(blogPostComment);
                 blogPost.appendChild(blogPostImg);
                 blogPost.appendChild(blogPostInfo);
-
                 blogContent.appendChild(blogPost);
+
             });
         })
         .catch(error => {
