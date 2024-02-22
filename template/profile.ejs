@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocialBee - Social Media Platform</title>
+    <link rel="stylesheet" href="/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-social">
+            <div class="logo">
+                <h3>SocialBee</h3>
+            </div>
+            <div class="search-bar">
+                <i class="fa fa-search search-icon"></i>
+                <input type="search" placeholder="Search Profile">
+            </div>
+            <div class="postlink">
+                <li><a href="/seepost">See Post</a></li>
+                <div class="profilepic" id="profileimg">
+                    <img src="/download.jpeg">
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="mainContainer">
+            <div class="mainleft">
+                <aside>
+                    <div class="sidebar-navigation">
+                        <ul>
+                            <li>
+                                <i class="fa-solid fa-message"></i>
+                                <span class="tooltip">Message</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <li>
+                        <!--<i class="fa-solid fa-right-from-bracket"></i> --> 
+                         <a href="/logout" class="tooltip">Logout</a>
+                     </li>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <div class="postContainer">
+        <div class="postContent">
+            <h1>Post a Blog</h1>
+            <form action="/addpost" method="post" enctype="multipart/form-data" id="addpost">
+                <div>
+                    <label for="title">Title:</label><br>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div>
+                    <label for="content">Content:</label><br>
+                    <textarea id="description" name="description" rows="5" required></textarea>
+                </div>
+                <div>
+                    <label for="image">Image (optional):</label><br>
+                    <input type="file" id="img" name="img" accept="image/*">
+                </div>
+                <div>
+                    <button type="submit">Post Blog</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/logouthtml.js"></script>
+    <script src="/profile.js"></script>
+</body>
+</html>

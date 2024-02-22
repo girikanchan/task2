@@ -1,0 +1,18 @@
+Meaning of using symbols for as a suffix to version number.
+
+1. ^8.3.2 : It means that application can upgrade it its in minor version means 
+            it can upgrade to 8.4.5 but not to 9.3.2 or 9.0.0.
+2. *      : Application can upgrade to any version.
+
+3. 8.3.2 : It means that the application will specifically work on assigned version only not upgradation is allowed.
+
+4. ~8.3.2 : It means that application can upgrade it its in major version means 
+            it can upgrade to 8.4.5 to 9.3.2 or 9.0.0 but not to 8.5.5.
+2. *      : Application can upgrade to any version.
+
+
+
+Asynchronous and Synchronous programming in javascript:
+
+
+javascript runs top to bottom.

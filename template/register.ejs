@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP Protocol</title>
+    <link rel="stylesheet" href="/index.css"></link>
+    <link rel="stylesheet" href="/register.css"></link>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="/login">Home</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">SignUp</a></li>
+        </ul>
+        
+    </nav>
+    <main>
+        <div class="containers">
+            <div class="registerform">
+                <h1>Registration Page</h1>
+            <div class="formreg">
+                <form id="registerForm" action="/register" method="post">
+                    <label> User ID: </label>
+                    <input id="userid" name ="userid" type="email" placeholder="Enter User ID"></input>
+                    <label> Password: </label>
+                    <input id="password" type="password" name="password" placeholder="Enter Password"></input>
+                    <label> Confirm Password: </label>
+                    <input id="cpassword" type="password" name="cpassword" placeholder="Again enter Password"></input>
+                    
+                    <button type="submit" id="register">Register</button>
+                </form>
+            </div>
+            <a href="/login">Already Registered - Login Here.</a>
+        </div>
+        </div>
+    </main>  
+    <script src="/registerhtml.js"></script> 
+    <script src="/logouthtml.js"></script>
+</body>
+</html>

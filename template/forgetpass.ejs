@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTP Protocol</title>
+    <link rel="stylesheet" href="/index.css"></link>
+    <link rel="stylesheet" href="/changepass.css"></link>
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="/login">Home</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">SignUp</a></li>
+        </ul>
+        <div class="logbtn">
+            <button type="button" id="logout"> Log out </button>
+        </div>
+    </nav>
+    <main>
+        <div class="containers">
+            <div class="forpassform">
+                <h1>Forget Password</h1>
+                <div class="formreg">
+                    <form action="/update" method="put" id="updatePasword">
+                        <label for="userid">User ID:</label>
+                        <input id="userid" type="email" name="userid" placeholder="Enter User ID"></input>
+                        <label for="oldpass">old Password:</label>
+                        <input id="old-password" type="password" name="oldPassword" placeholder="Enter old Password"></input>
+                        <label for="newpass">New Password:</label>
+                        <input id="newpass" type="password" name="newPassword" placeholder="Enter New Password"></input>
+                        <label for="confirmpass">Confirm Password:</label>
+                        <input id="confirmpass" type="password" name="confirmNewPassword"placeholder="Confirm New Password"></input>
+                        <button type="submit" id="changePass" >Change Password</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="/changepass.js"></script>
+</body>
+</html>

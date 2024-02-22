@@ -1,0 +1,94 @@
+.blogContainer{
+    margin-top: 80px;
+    margin-left: 220px;
+    margin-right: 80px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #e1dfdf;
+    float:left;
+    width:1000px;
+    overflow-y: auto;
+    height: 590px;
+}
+
+.blogpost{
+    width: 100%;
+    max-width: 65rem;
+    padding: 5rem;
+    background-color: rgb(189, 185, 180);
+    box-shadow: 0 1.4rem 8rem rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Poppins', sans-serif;
+    border-radius: .8rem;
+    margin: 10px;
+    height:  auto;
+}
+
+.blog_post_img{
+    min-width: 25rem;
+    max-width: 25rem;
+    height: 20rem;
+    transform: translateX(-4rem);
+}
+
+.blog_post_img img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all .3s ease-in-out;
+}
+.blog_post_img img::before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: .5rem .5rem 3rem 1px rgba(250, 246, 246, 0.7);
+}
+
+
+.blog_post_date span{
+    display: block;
+    color: black;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.blog_post_title{
+    font-size: 18px;
+    margin: 1.5rem 0 2rem;
+    text-transform: capitalize;
+    color: black;
+}
+
+.blog_post_content{
+    margin-bottom: 3rem;
+    font-size:  14px;
+    color: aliceblue;
+}
+
+.blog_post_like{
+    margin-bottom: 5px;
+    font-size: 14px;
+    display: flex;
+}
+
+.blog_post_like button{
+    padding: 15px 20px;
+    color: rgb(25, 25, 25);
+    background-color: rgb(97, 95, 92);
+    border-radius: 10px;
+}
+
+.like_text p{
+    color: rgb(228, 224, 224);
+    font-weight: 500;
+    font-size: 18px;
+    margin-top: 10px;
+    margin-left: 10px;
+}

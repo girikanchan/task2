@@ -1,0 +1,218 @@
+*,*::before,*::after{
+    margin: 0%;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    text-decoration: none;
+    list-style: none;
+    border: none;
+}
+
+
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(39, 33, 88);
+    background-color: whitesmoke;
+    overflow: hidden;
+}
+
+.logo{
+    margin-left: 100px;
+}
+.logo h3{
+    font-size: 24px;
+    font-weight: 800;
+}
+
+nav .navbar{
+    width: 90%;
+    margin: 0 auto;   
+}
+img{
+    display: block;
+    width: 100%;
+}
+.profilepic{
+    width: 3rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profilepic:hover{
+    width: 3.3rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
+    opacity:  0.7;
+}
+
+nav{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    padding: .7rem 0;
+    color: rgb(10, 8, 68);
+    background: rgb(199, 201, 214);
+}
+
+.nav-social{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .search-bar{
+    padding:  10px 70px;
+    background: rgb(223, 227, 225);
+    border-radius: 10px;
+}
+
+nav .search-bar input[type="search"]{
+    background: transparent;
+    width: 70vm;
+    margin-left: 1rem;
+    font-size: 18px;
+    outline: none;
+    border: none;
+}
+
+nav .search-bar input[type="search"]::placeholder{
+    color: black;
+}
+.postlink{
+    display: flex;
+    justify-content: space-around;
+    margin-right: 100px;
+    align-items: center;
+}
+
+.postlink li{
+    display: flex;
+    justify-content: space-around;
+    margin-right: 40px;
+    align-items: center;
+    padding: 10px 20px;
+    color: rgb(184, 201, 201);
+    background-color: rgb(39, 40, 44);
+    border-radius: 10px;
+}
+
+.postlink li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+
+/* Main container styles */
+.mainContainer {
+    display: flex;
+}
+
+/* Main left container styles */
+.mainleft {
+    width: 200px; /* Adjust width as needed */
+}
+
+/* Aside styles */
+aside {
+    position: fixed;
+    top: 70px; /* Adjust as needed based on your navbar height */
+    left: 0;
+    width: 170px; /* Same as .mainleft width */
+    height: calc(100vh - 50px); /* Adjust based on your navbar height */
+    background-color: #b9b9dd; /* Change as needed */
+    border-right: 1px solid rgb(38, 37, 37); /* Optional: add border for separation */
+    z-index: 100; /* Ensure the aside is above other content */
+    overflow-y: auto; /* Add scrollbar if content exceeds height */
+}
+
+/* Sidebar navigation styles */
+.sidebar-navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-navigation ul li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid rgb(59, 56, 56); /* Optional: add border between items */
+}
+
+.sidebar-navigation ul li:last-child {
+    border-bottom: 1px solid rgb(59, 56, 56);
+}
+
+/* Tooltip styles */
+.tooltip {
+    margin-left: 10px;
+    font-size: 14px;
+    display: inline-block;
+}
+
+/* Show tooltip on hover */
+.sidebar-navigation ul li:hover .tooltip {
+    display: inline-block;
+    position: absolute;
+    left: 100%; /* Adjust as needed for tooltip position */
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #333;
+    color: rgb(32, 32, 32);
+    padding: 5px;
+    border-radius: 3px;
+    white-space: nowrap;
+    z-index: 200; /* Ensure tooltip is above other content */
+}
+
+.postContainer {
+    margin-top: 100px;
+    margin-left: 100px;
+    margin-right: 80px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.postContent {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Form styles */
+form {
+    margin-top: 20px;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="file"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #555;
+}
