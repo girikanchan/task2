@@ -13,16 +13,17 @@ module.exports = async (req, res) => {
             return res.status(300).json("Invalid Token");
         }
 
-        const { postId,commentcontent} = req.body;
+        const { commentcontent } = req.body;
+        const postId = req.params.postId;
         const userId = user.id;
         const insertCommentQuery = 'INSERT INTO `CommentsPost` (`postid`, `userid`,`commentcontent`) VALUES (?, ?, ?)';
-        connection.query(insertCommentQuery, [postId, userId,commentcontent], (insertErr, insertResult) => {
+        connection.query(insertCommentQuery, [postId, userId, commentcontent], (insertErr, insertResult) => {
             if (insertErr) {
                 console.error("Error inserting like:", insertErr);
                 return res.status(500).json(insertErr);
             }
             console.log("Comment inserted successfully:", insertResult);
             res.status(200).json({ message: 'Post commented successfully' });
-    })
-})
+        });
+    });
 };
