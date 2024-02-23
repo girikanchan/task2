@@ -18,14 +18,14 @@ module.exports = async (req, res) => {
 
             const { username } = req.body;
 
-            // Check if email and password are provided
+            // Check if username are provided
             if (!username) {
                 return res.status(400).json({ error: 'User name required to search user name.' });
             }
     
             // Query database to find user by email
-            const getUserQuery = 'SELECT * FROM task2db WHERE email = ?';
-            connection.query(getUserQuery, [username], async (err, results) => {
+            const getUserQuery = 'SELECT email FROM task2db WHERE email LIKE ?';
+            connection.query(getUserQuery, [`%${username}%`], async (err, results) => {
                 if (err) {
                     console.error('Error retrieving user:', err);
                     return res.status(500).json({ error: 'Error retrieving user' });
