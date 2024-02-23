@@ -322,10 +322,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 commentbtn.addEventListener('click', async () => {
 
                     const postResponse = await fetch('/post');
-                    const postData = await postResponse.json();
+                    const post = await postResponse.json();
                 
                     
-                    const postId = postData.postid;
+                    const postId = post.postid;
                 
                     
                     const commentsResponse = await fetch('/comments', {

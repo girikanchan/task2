@@ -12,29 +12,33 @@ showCommentContainers.forEach((btn) => btn.addEventListener("click",(e) => {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    const commentForm = document.getElementById('commentpost');
+    const registerForm = document.getElementById('commmentpost');
 
-    commentForm.addEventListener('submit', function (event) {
-        event.preventDefault(); 
+    registerForm.addEventListener('submit', async function (event) {
+        event.preventDefault();
 
-        const formData = new FormData(commentForm); 
-        const commentContent = formData.get('name');
-        fetch('/comments', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                postId: postId,
-                commentcontent: commentContent
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data); 
-        })
-        .catch(error => {
-            console.error('Error:', error); 
-        });
+        const commentcontent = document.getElementById('name').value;
+        
+        try {
+            const response = await fetch('/comments', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ commentcontent: commentcontent })
+            });
+
+            if (!response.ok) {
+                const errorMessage = await response.json();
+                throw new Error(errorMessage.error);
+            }
+
+            // Registration successful
+            alert('Post commented successful');
+            // Redirect to login form
+            window.location.href = '/comments';
+        } catch (error) {
+            alert('Error: ' + error.message);
+        }
     });
 });
