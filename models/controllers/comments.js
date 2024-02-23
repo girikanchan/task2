@@ -73,7 +73,7 @@ module.exports = async (req, res) => {
                 return res.status(500).json(checkErr);
             }
 
-            if (checkResult.length <= 0) {
+            if (checkResult.length < 0) {
                 insertCommentCount(postId, res);
             }
         });
@@ -132,15 +132,15 @@ function insertCommentCount(postId, res) {
         const commentCount = results[0].commentCount;
 
         
-        const updateCommentQuery = 'INSERT into commentCount(postid,commentCount) VALUES(?,?)';
+        const updateCommentQuery = 'INSERT into commentCount(postid,commentCount) VALUES(?,?) WHERE postid = ?';
 
-        connection.query(updateCommentQuery, [commentCount, postId], (updateErr, updateResult) => {
+        connection.query(updateCommentQuery, [commentCount, postId, postId], (updateErr, updateResult) => {
             if (updateErr) {
-                console.error("Error in inserting comments count in comment table:", updateErr);
+                console.error("Error updating comments count in comment table:", updateErr);
                 return res.status(500).json(updateErr);
             }
             console.log("Comment count updated successfully:", updateResult);
-            return res.status(200).json({ message: "Insertion operation performed successfully" });
+            return res.status(200).json({ message: "count operation performed successfully" });
         });
     });
 }
