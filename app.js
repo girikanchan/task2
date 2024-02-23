@@ -61,6 +61,14 @@ app.get("/comment",(req,res) => {
     res.render("comments");
 });
 
+app.get("/seeComments",(req,res) => {
+    res.render("comments");
+});
+
+app.get("/searchprofile",(req,res) => {
+    res.render("profile");
+});
+
 app.listen(3000, () => {
     console.log("Server is running on port 3000");
 });

@@ -73,7 +73,7 @@ module.exports = async (req, res) => {
                 return res.status(500).json(checkErr);
             }
 
-            if (checkResult.length < 0) {
+            if (checkResult.length <= 0) {
                 insertCommentCount(postId, res);
             }
         });
@@ -139,8 +139,8 @@ function insertCommentCount(postId, res) {
                 console.error("Error updating comments count in comment table:", updateErr);
                 return res.status(500).json(updateErr);
             }
-            console.log("Comment count updated successfully:", updateResult);
-            return res.status(200).json({ message: "count operation performed successfully" });
+            console.log("Comment count inserted successfully:", updateResult);
+            return res.status(200).json({ message: "count insertion operation performed successfully" });
         });
     });
 }
