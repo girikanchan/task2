@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Registration successful
             alert('Post commented successful');
             // Redirect to login form
-            window.location.href = '/comments';
+            window.location.href = '/comment';
         } catch (error) {
             alert('Error: ' + error.message);
         }

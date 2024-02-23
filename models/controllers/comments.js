@@ -46,24 +46,61 @@ module.exports = async (req, res) => {
             return res.status(300).json("Invalid Token");
         }
 
-        const { postId } = req.body;
+        const { postId, commentcontent } = req.body;
+        const userid = user.id;
+        const commentdate = moment().format("YYYY-MM-DD HH:mm:ss");
 
         console.log('Received postId:', postId);
 
-        const commentquery = 'INSERT INTO CommentsPost SET ?';
+        const commentquery = 'INSERT INTO CommentsPost(commentcontent,userid,postid,commentdate) Values(?,?,?,?)';
 
+        /*
         const post = {
             userid: user.id,
             postId : postId,
             commentcontent: req.body.commentcontent,
             commentdate: moment().format("YYYY-MM-DD HH:mm:ss")
         };
+        */
 
-        connection.query(commentquery, post, (err, result) => {
+        const commentQuery = 'INSERT INTO CommentsPost (commentcontent, userid, postid, commentdate) VALUES (?, ?, ?, ?)';
+
+        connection.query(commentQuery, [commentcontent, userid, postId, commentdate], (err, result) => {
             if (err) {
-                return res.status(500).json(err);
+                console.error("Error inserting comment:", err);
+                return res.status(500).json({ error: "Internal Server Error" });
             }
-            return res.status(200).json("Post has been created");
+            updateCommentCount(postId, res);
         });
     });
 };
+
+
+function updateCommentCount(postId, res) {
+    // Query to get the count of likes for the specified postId
+    const commentCountQuery = 'SELECT COUNT(*) AS commentCount FROM CommentsPost WHERE postid = ?';
+
+    // Execute the query
+    connection.query(commentCountQuery, [postId], (countErr, results) => {
+        if (countErr) {
+            console.error("Error fetching like count:", countErr);
+            return res.status(500).json(countErr);
+        }
+
+        // Extract CommentCount from results
+        const commentCount = results[0].commentCount;
+
+        // Update the post table with the new like count
+        const updateCommentQuery = 'UPDATE commentCount SET CommentCount = ? WHERE post_id = ?';
+
+        // Execute the update query
+        connection.query(updateCommentQuery, [commentCount, postId], (updateErr, updateResult) => {
+            if (updateErr) {
+                console.error("Error updating like count in comment table:", updateErr);
+                return res.status(500).json(updateErr);
+            }
+            console.log("Comment count updated successfully:", updateResult);
+            return res.status(200).json({ message: "count operation performed successfully" });
+        });
+    });
+}
