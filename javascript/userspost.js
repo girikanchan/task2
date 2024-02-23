@@ -195,6 +195,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 });
 */
+
 let plike;
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -255,6 +256,8 @@ document.addEventListener("DOMContentLoaded", function() {
                  * and change the button text to  "Dislike". if any user have already liked a comment and if it again click on dislike button than
                  * it will perform a dislike operation and again button text will change to "Like". 
                  */
+
+
                 const likebtn = document.createElement('button');
                 likebtn.classList.add('likebtn');
                 likebtn.textContent = 'Like'; // Default text for like button
@@ -312,37 +315,23 @@ document.addEventListener("DOMContentLoaded", function() {
                 commentbtn.textContent = 'comment'; 
                 blogPostComment.appendChild(commentbtn);
 
-                //location.href = "/comments";
-/*
                 commentbtn.addEventListener('click', async () => {
-                    location.href = "/comments";
-                });
+                    try {
+                        const commentsResponse = await fetch('/comments', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ postId: post.postid })
+                        });
 
-                */
-                commentbtn.addEventListener('click', async () => {
-
-                    const postResponse = await fetch('/post');
-                    const post = await postResponse.json();
-                
-                    
-                    const postId = post.postid;
-                
-                    
-                    const commentsResponse = await fetch('/comments', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ postId: postId })
-                    });
-                
-                   
-                    if (commentsResponse.ok) {
-                        
-                        location.href = "/comments";
-                    } else {
-                       
-                        console.error('Error sending postId to /comments API');
+                        if (commentsResponse.ok) {
+                            location.href = "/comments";
+                        } else {
+                            console.error('Error sending postId to /comments API');
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
                     }
                 });
                 
