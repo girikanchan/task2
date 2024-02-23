@@ -11,19 +11,30 @@ showCommentContainers.forEach((btn) => btn.addEventListener("click",(e) => {
 }));
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    fetch('/comments')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to fetch posts');
-            }
-            return response.json();
+document.addEventListener('DOMContentLoaded', function () {
+    const commentForm = document.getElementById('commentpost');
+
+    commentForm.addEventListener('submit', function (event) {
+        event.preventDefault(); 
+
+        const formData = new FormData(commentForm); 
+        const commentContent = formData.get('name');
+        fetch('/comments', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                postId: postId,
+                commentcontent: commentContent
+            })
         })
-        .then(posts => {
-            
-            });
+        .then(response => response.json())
+        .then(data => {
+            console.log(data); 
         })
         .catch(error => {
-            console.error('Error fetching Comments:', error);
-            alert('Failed to fetch Comments. Please try again later.');
+            console.error('Error:', error); 
         });
+    });
+});

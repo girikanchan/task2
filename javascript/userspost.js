@@ -313,10 +313,39 @@ document.addEventListener("DOMContentLoaded", function() {
                 blogPostComment.appendChild(commentbtn);
 
                 //location.href = "/comments";
-
+/*
                 commentbtn.addEventListener('click', async () => {
                     location.href = "/comments";
                 });
+
+                */
+                commentbtn.addEventListener('click', async () => {
+
+                    const postResponse = await fetch('/post');
+                    const postData = await postResponse.json();
+                
+                    
+                    const postId = postData.postid;
+                
+                    
+                    const commentsResponse = await fetch('/comments', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ postId: postId })
+                    });
+                
+                   
+                    if (commentsResponse.ok) {
+                        
+                        location.href = "/comments";
+                    } else {
+                       
+                        console.error('Error sending postId to /comments API');
+                    }
+                });
+                
                 blogPostInfo.appendChild(blogPostComment);
                 blogPost.appendChild(blogPostImg);
                 blogPost.appendChild(blogPostInfo);
