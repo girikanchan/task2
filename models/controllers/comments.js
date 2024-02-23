@@ -77,26 +77,26 @@ module.exports = async (req, res) => {
 
 
 function updateCommentCount(postId, res) {
-    // Query to get the count of likes for the specified postId
+    
     const commentCountQuery = 'SELECT COUNT(*) AS commentCount FROM CommentsPost WHERE postid = ?';
 
-    // Execute the query
+    
     connection.query(commentCountQuery, [postId], (countErr, results) => {
         if (countErr) {
             console.error("Error fetching like count:", countErr);
             return res.status(500).json(countErr);
         }
 
-        // Extract CommentCount from results
+        
         const commentCount = results[0].commentCount;
 
-        // Update the post table with the new like count
-        const updateCommentQuery = 'UPDATE commentCount SET CommentCount = ? WHERE post_id = ?';
+        
+        const updateCommentQuery = 'UPDATE commentCount SET CommentCount = ? WHERE postid = ?';
 
-        // Execute the update query
+        
         connection.query(updateCommentQuery, [commentCount, postId], (updateErr, updateResult) => {
             if (updateErr) {
-                console.error("Error updating like count in comment table:", updateErr);
+                console.error("Error updating comments count in comment table:", updateErr);
                 return res.status(500).json(updateErr);
             }
             console.log("Comment count updated successfully:", updateResult);
