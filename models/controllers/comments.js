@@ -52,7 +52,7 @@ module.exports = async (req, res) => {
 
         console.log('Received postId:', postId);
 
-        const commentquery = 'INSERT INTO CommentsPost(commentcontent,userid,postid,commentdate) Values(?,?,?,?)';
+        //const commentquery = 'INSERT INTO CommentsPost(commentcontent,userid,postid,commentdate) Values(?,?,?,?)';
 
         /*
         const post = {
@@ -65,6 +65,18 @@ module.exports = async (req, res) => {
 
         const commentQuery = 'INSERT INTO CommentsPost (commentcontent, userid, postid, commentdate) VALUES (?, ?, ?, ?)';
 
+        const checkCommentCountEntry = 'Select * from commentCount where postid = ?';
+
+        connection.query(checkCommentCountEntry, [postId], (checkErr, checkResult) => {
+            if (checkErr) {
+                console.error("Error checking PostId:", checkErr);
+                return res.status(500).json(checkErr);
+            }
+
+            if (checkResult.length < 0) {
+                insertCommentCount(postId, res);
+            }
+        });
         connection.query(commentQuery, [commentcontent, userid, postId, commentdate], (err, result) => {
             if (err) {
                 console.error("Error inserting comment:", err);
@@ -79,7 +91,6 @@ module.exports = async (req, res) => {
 function updateCommentCount(postId, res) {
     
     const commentCountQuery = 'SELECT COUNT(*) AS commentCount FROM CommentsPost WHERE postid = ?';
-
     
     connection.query(commentCountQuery, [postId], (countErr, results) => {
         if (countErr) {
@@ -95,6 +106,34 @@ function updateCommentCount(postId, res) {
 
         
         connection.query(updateCommentQuery, [commentCount, postId], (updateErr, updateResult) => {
+            if (updateErr) {
+                console.error("Error updating comments count in comment table:", updateErr);
+                return res.status(500).json(updateErr);
+            }
+            console.log("Comment count updated successfully:", updateResult);
+            return res.status(200).json({ message: "count operation performed successfully" });
+        });
+    });
+}
+
+//this function will work when postid is not their in commentCount table
+function insertCommentCount(postId, res) {
+    
+    const commentCountQuery = 'SELECT COUNT(*) AS commentCount FROM CommentsPost WHERE postid = ?';
+
+    
+    connection.query(commentCountQuery, [postId], (countErr, results) => {
+        if (countErr) {
+            console.error("Error fetching like count:", countErr);
+            return res.status(500).json(countErr);
+        }
+
+        
+        const commentCount = results[0].commentCount;
+
+        const updateCommentQuery = 'INSERT into commentCount(postid,commentCount) VALUES(?,?) WHERE postid = ?';
+
+        connection.query(updateCommentQuery, [commentCount, postId, postId], (updateErr, updateResult) => {
             if (updateErr) {
                 console.error("Error updating comments count in comment table:", updateErr);
                 return res.status(500).json(updateErr);
