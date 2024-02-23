@@ -316,17 +316,19 @@ document.addEventListener("DOMContentLoaded", function() {
                 blogPostComment.appendChild(commentbtn);
 
                 commentbtn.addEventListener('click', async () => {
+                    const postId = post.postid;
+            
                     try {
                         const commentsResponse = await fetch('/comments', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify({ postId: post.postid })
+                            body: JSON.stringify({ postId })
                         });
-
+                
                         if (commentsResponse.ok) {
-                            location.href = "/comments";
+                            location.href = "/comment";
                         } else {
                             console.error('Error sending postId to /comments API');
                         }

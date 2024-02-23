@@ -46,11 +46,15 @@ module.exports = async (req, res) => {
             return res.status(300).json("Invalid Token");
         }
 
+        const { postId } = req.body;
+
+        console.log('Received postId:', postId);
+
         const commentquery = 'INSERT INTO CommentsPost SET ?';
 
         const post = {
-            id: user.id,
-            postId : req.params.postId,
+            userid: user.id,
+            postId : postId,
             commentcontent: req.body.commentcontent,
             commentdate: moment().format("YYYY-MM-DD HH:mm:ss")
         };

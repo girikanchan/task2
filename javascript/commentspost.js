@@ -12,12 +12,12 @@ showCommentContainers.forEach((btn) => btn.addEventListener("click",(e) => {
 
 
 document.addEventListener('DOMContentLoaded', function () {
-    const registerForm = document.getElementById('commmentpost');
+    const commmentpost = document.getElementById('commmentpost');
 
-    registerForm.addEventListener('submit', async function (event) {
+    commmentpost.addEventListener('submit', async function (event) {
         event.preventDefault();
 
-        const commentcontent = document.getElementById('name').value;
+        const commentcontent = document.getElementById('commentcontent').value;
         
         try {
             const response = await fetch('/comments', {
