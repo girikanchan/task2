@@ -17,15 +17,16 @@ document.addEventListener('DOMContentLoaded', function () {
     commmentpost.addEventListener('submit', async function (event) {
         event.preventDefault();
 
+        const postId = localStorage.getItem('postId');
         const commentcontent = document.getElementById('commentcontent').value;
-        const postId = req.param.postId;
+        //const postId = req.param.postId;
         try {
-            const response = await fetch(`/comments?postId=${postId}`, {
+            const response = await fetch(`/comments`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ commentcontent: commentcontent })
+                body: JSON.stringify({ commentcontent: commentcontent, postId : postId })
             });
             
             if (!response.ok) {

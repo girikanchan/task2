@@ -1,201 +1,3 @@
-/*
-
-document.addEventListener("DOMContentLoaded", function() {
-    fetch('/post')
-        .then(response => response.json())
-        .then(posts => {
-            const blogContainer = document.querySelector('.blogContainer');
-            const blogContent = blogContainer.querySelector('.blogContent');
-
-            posts.forEach(post => {
-                const blogPost = document.createElement('div');
-                blogPost.classList.add('blogpost');
-
-                const blogPostImg = document.createElement('div');
-                blogPostImg.classList.add('blog_post_img', 'img');
-                const img = document.createElement('img');
-                img.src = post.img; //key
-                blogPostImg.appendChild(img);
-
-                const blogPostInfo = document.createElement('div');
-                blogPostInfo.classList.add('blog_post_info');
-
-                const blogPostDate = document.createElement('div');
-                blogPostDate.classList.add('blog_post_date');
-                const userEmail = document.createElement('span');
-                userEmail.textContent = post.user_id; // pass this to '/likes api'
-                const postDate = document.createElement('span');
-                postDate.textContent = post.updated_time; // key
-                blogPostDate.appendChild(userEmail);
-                blogPostDate.appendChild(postDate);
-
-                const blogPostTitle = document.createElement('h1');
-                blogPostTitle.classList.add('blog_post_title');
-                blogPostTitle.textContent = post.name; // key
-
-                const blogPostContent = document.createElement('p');
-                blogPostContent.classList.add('blog_post_content');
-                blogPostContent.textContent = post.description; //  key
-
-                const blogPostId = document.createElement('p');
-                blogPostId.classList.add('blog_post_id');
-                blogPostId.textContent = post.postid; //pass this postid to api
-
-
-
-                const blogPostlike = document.createElement('div');
-                blogPostlike.classList.add('blog_post_like');
-                const likebtn = document.createElement('button');
-                likebtn.classList.add('likebtn');
-                likebtn.textContent = 'Like'; // Text for like button
-                likebtn.addEventListener('click', async () => {
-                    try {
-                        const response = await fetch('/likes', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({ postId: post.postid, id: post.user_id })
-                        });
-
-                        if (!response.ok) {
-                            throw new Error('Failed to update like');
-                        }
-
-                        const updatedPost = await response.json();
-                        plike.textContent = updatedPost.like;
-                    } catch (error) {
-                        console.error('Error updating like:', error);
-                    }
-                })
-                blogPostlike.appendChild(likebtn);
-
-                const liketext = document.createElement('div');
-                liketext.classList.add('like_text');
-                const plike = document.createElement('p');
-                plike.textContent = post.likes; // Text for like count
-                liketext.appendChild(plike);
-
-                blogPostInfo.appendChild(blogPostDate);
-                blogPostInfo.appendChild(blogPostTitle);
-                blogPostInfo.appendChild(blogPostContent);
-                blogPostInfo.appendChild(blogPostId);
-                blogPostInfo.appendChild(blogPostlike);
-                blogPostInfo.appendChild(liketext);
-
-                blogPost.appendChild(blogPostImg);
-                blogPost.appendChild(blogPostInfo);
-
-                blogContent.appendChild(blogPost);
-            });
-        })
-        .catch(error => console.error('Error fetching posts:', error));
-});
-
-*/
-/*
-document.addEventListener("DOMContentLoaded", function() {
-    fetch('/post')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to fetch posts');
-            }
-            return response.json();
-        })
-        .then(posts => {
-            const blogContainer = document.querySelector('.blogContainer');
-            const blogContent = blogContainer.querySelector('.blogContent');
-
-            posts.forEach(post => {
-                const blogPost = document.createElement('div');
-                blogPost.classList.add('blogpost');
-
-                const blogPostImg = document.createElement('div');
-                blogPostImg.classList.add('blog_post_img', 'img');
-                const img = document.createElement('img');
-                img.src = post.img; //key
-                blogPostImg.appendChild(img);
-
-                const blogPostInfo = document.createElement('div');
-                blogPostInfo.classList.add('blog_post_info');
-
-                const blogPostDate = document.createElement('div');
-                blogPostDate.classList.add('blog_post_date');
-                const userEmail = document.createElement('span');
-                userEmail.textContent = post.user_id; // pass this to '/likes api'
-                const postDate = document.createElement('span');
-                postDate.textContent = post.updated_time; // key
-                blogPostDate.appendChild(userEmail);
-                blogPostDate.appendChild(postDate);
-
-                const blogPostTitle = document.createElement('h1');
-                blogPostTitle.classList.add('blog_post_title');
-                blogPostTitle.textContent = post.name; // key
-
-                const blogPostContent = document.createElement('p');
-                blogPostContent.classList.add('blog_post_content');
-                blogPostContent.textContent = post.description; //  key
-
-                const blogPostId = document.createElement('p');
-                blogPostId.classList.add('blog_post_id');
-                blogPostId.textContent = post.postid; //pass this postid to api
-
-                const blogPostlike = document.createElement('div');
-                blogPostlike.classList.add('blog_post_like');
-                const likebtn = document.createElement('button');
-                likebtn.classList.add('likebtn');
-                likebtn.textContent = 'Like'; // Text for like button
-                likebtn.addEventListener('click', async () => {
-                    try {
-                        const response = await fetch('/like', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({ postId: post.postid, userId: post.user_id })
-                        });
-
-                        if (!response.ok) {
-                            throw new Error('Failed to update like');
-                        }
-
-                        const updatedPost = await response.json();
-                        plike.textContent = updatedPost.like;
-                        likebtn.disabled = true; // Disable the button after liking
-                        likebtn.textContent = 'Liked';
-                    } catch (error) {
-                        console.error('Error updating like:', error);
-                        alert('Failed to update like. Please try again later.');
-                    }
-                })
-                blogPostlike.appendChild(likebtn);
-
-                const liketext = document.createElement('div');
-                liketext.classList.add('like_text');
-                const plike = document.createElement('p');
-                plike.textContent = post.likes; // Text for like count
-                liketext.appendChild(plike);
-
-                blogPostInfo.appendChild(blogPostDate);
-                blogPostInfo.appendChild(blogPostTitle);
-                blogPostInfo.appendChild(blogPostContent);
-                blogPostInfo.appendChild(blogPostId);
-                blogPostInfo.appendChild(blogPostlike);
-                blogPostInfo.appendChild(liketext);
-
-                blogPost.appendChild(blogPostImg);
-                blogPost.appendChild(blogPostInfo);
-
-                blogContent.appendChild(blogPost);
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching posts:', error);
-            alert('Failed to fetch posts. Please try again later.');
-        });
-});
-*/
-
 let plike;
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -309,14 +111,33 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //comment button
                 const blogPostComment = document.createElement('div');
+
+                let form = document.createElement("form");
+                form.setAttribute("method", "post");
+                form.setAttribute("action" , "comments");
+                form.setAttribute("id" , "commmentform");
+
+                
+                const textfield = document.createElement("input");
+                textfield.type = "text";
+                textfield.value = "";
+                textfield.placeholder = "Add Comment here... ";
+                textfield.id = "commentContent";
+                form.appendChild(textfield);
+
+                
                 blogPostComment.classList.add('blog_post_comment');
                 const commentbtn = document.createElement('button');
                 commentbtn.classList.add('commentbtn');
                 commentbtn.textContent = 'comment'; 
-                blogPostComment.appendChild(commentbtn);
+                form.appendChild(commentbtn);
+
+                blogPostComment.appendChild(form);
 
                 commentbtn.addEventListener('click', async () => {
                     const postId = post.postid;
+                    const commentfrom = document.getElementById('commmentform');
+                    const commentContent = document.getElementById('commentContent').value;
             
                     try {
                         const commentsResponse = await fetch('/comments', {
@@ -324,14 +145,14 @@ document.addEventListener("DOMContentLoaded", function() {
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify({ postId })
+                            body: JSON.stringify({ postId, commentContent: commentContent })
                         });
                 
-                        //if (commentsResponse.ok) {
-                            //location.href = "/comment/{postId}";
-                        //} else {
-                            //console.error('Error sending postId to /comments API');
-                        //}
+                        if (commentsResponse.ok) {
+                            location.href = "/seepost";
+                        } else {
+                            console.error('Error sending postId to /comments API');
+                        }
 
                         if (!response.ok) {
                             const errorMessage = await response.json();
