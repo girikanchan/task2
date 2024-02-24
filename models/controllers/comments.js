@@ -261,6 +261,8 @@ module.exports = async (req, res) => {
         const userId = user.id;
         const commentDate = moment().format("YYYY-MM-DD HH:mm:ss");
 
+        console.log('Received postId:', postId);
+        
         const commentQuery = 'INSERT INTO CommentsPost (commentcontent, userid, postid, commentdate) VALUES (?, ?, ?, ?)';
         
         connection.query(commentQuery, [commentContent, userId, postId, commentDate], (err, result) => {

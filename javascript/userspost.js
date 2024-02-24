@@ -327,11 +327,18 @@ document.addEventListener("DOMContentLoaded", function() {
                             body: JSON.stringify({ postId })
                         });
                 
-                        if (commentsResponse.ok) {
-                            location.href = "/comment";
-                        } else {
-                            console.error('Error sending postId to /comments API');
+                        //if (commentsResponse.ok) {
+                            //location.href = "/comment/{postId}";
+                        //} else {
+                            //console.error('Error sending postId to /comments API');
+                        //}
+
+                        if (!response.ok) {
+                            const errorMessage = await response.json();
+                            throw new Error(errorMessage.error);
                         }
+
+                        //form to add comments to post for PostId and on clicking submit it will give alert
                     } catch (error) {
                         console.error('Error:', error);
                     }

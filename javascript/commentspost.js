@@ -18,16 +18,16 @@ document.addEventListener('DOMContentLoaded', function () {
         event.preventDefault();
 
         const commentcontent = document.getElementById('commentcontent').value;
-        
+        const postId = req.param.postId;
         try {
-            const response = await fetch('/comments', {
+            const response = await fetch(`/comments?postId=${postId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({ commentcontent: commentcontent })
             });
-
+            
             if (!response.ok) {
                 const errorMessage = await response.json();
                 throw new Error(errorMessage.error);
