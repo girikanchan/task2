@@ -134,13 +134,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 blogPostComment.appendChild(form);
 
+                
                 commentbtn.addEventListener('click', async () => {
                     const postId = post.postid;
                     const commentfrom = document.getElementById('commmentform');
                     const commentContent = document.getElementById('commentContent').value;
             
                     try {
-                        const commentsResponse = await fetch('/comments', {
+                        const commentsResponse = await fetch('/comments/:postId', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
