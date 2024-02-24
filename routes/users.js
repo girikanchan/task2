@@ -25,7 +25,7 @@ router.put('/update', updateController);
 router.get('/post', postController);
 router.post('/like', likeController);
 router.post('/addpost', addpostController);
-router.post('/comments', postCommentsController);
+router.post('/comments/:postId', postCommentsController);
 router.get('/searchprofile', searchprofile);
 router.get('/seeComments', seeCommentsController);
 module.exports = router;

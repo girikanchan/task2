@@ -257,7 +257,8 @@ module.exports = async (req, res) => {
             return res.status(300).json("Invalid Token");
         }
 
-        const { postId, commentContent } = req.body;
+        const { commentContent } = req.body;
+        const postId = req.params.postId;
         const userId = user.id;
         const commentDate = moment().format("YYYY-MM-DD HH:mm:ss");
 
