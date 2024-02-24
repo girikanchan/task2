@@ -1,5 +1,3 @@
-
-// Fetch comments from the server
 async function fetchComments() {
 try {
     const postId = '';
