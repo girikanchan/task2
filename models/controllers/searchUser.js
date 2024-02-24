@@ -13,27 +13,27 @@ module.exports = async (req, res) => {
         // Verify the JWT token
         jwt.verify(token, "secretkey", async function (err, user) {
             if (err) {
-                return res.status(300).json("Invalid Token");
+                return res.status(401).json("Invalid Token");
             }
 
-            const { username } = req.body;
-
-            // Check if username are provided
+            const { username } = req.query; 
+            console.log(username);
+            // Check if username is provided
             if (!username) {
-                return res.status(400).json({ error: 'User name required to search user name.' });
+                return res.status(400).json({ error: 'Username required to search for a profile.' });
             }
-    
-            // Query database to find user by email
+
             const getUserQuery = 'SELECT email FROM task2db WHERE email LIKE ?';
             connection.query(getUserQuery, [`%${username}%`], async (err, results) => {
                 if (err) {
                     console.error('Error retrieving user:', err);
                     return res.status(500).json({ error: 'Error retrieving user' });
                 }
-    
+
                 if (results.length === 0) {
                     return res.status(404).json({ error: 'User not found' });
                 }
+
                 return res.status(200).json(results);
             });
         });

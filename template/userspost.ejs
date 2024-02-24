@@ -15,8 +15,14 @@
                 <h3>SocialBee</h3>
             </div>
             <div class="search-bar">
+                <form id="searchForm" action="/searchprofile" method="get">
                 <i class="fa fa-search search-icon"></i>
-                <input type="search" placeholder="Search Profile">
+                <input type="search" placeholder="Search Profile" id="searchInput">
+                <button type="submit" id="searchButton">Search</button> 
+            </form>
+            <div id="searchResults">
+                
+            </div>
             </div>
             <div class="postlink">
                 <li><a href="/addpost">Add Post</a></li>
@@ -53,7 +59,7 @@
             </div>
         </div>
     <script src="/logouthtml.js"></script>
-    
+    <script src="/searchprofile.js"></script>
     <script src="/userspost.js"></script>
 </body>
 </html>
