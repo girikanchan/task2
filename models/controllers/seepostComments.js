@@ -15,21 +15,21 @@ module.exports = async (req, res) => {
             if (err) {
                 return res.status(300).json("Invalid Token");
             }
+            
+            const { postId } = req.body; 
 
-           //const { postId } = req.body; //sending this postId from /post (current api) to /comments api onclicking comment button.
+            
+            const commentQuery = 'SELECT c.*, u.email as user_id FROM CommentsPost AS c JOIN task2db AS u ON (u.id = c.userid) WHERE c.postid = ? ORDER BY c.commentdate DESC';
 
-            // Query posts from database for the authenticated user
-            const postquery = 'SELECT p.*, u.email as user_id  FROM post AS p  JOIN task2db AS u ON (u.id = p.id)  WHERE u.id = ? ORDER BY p.updated_time DESC';
-
-            connection.query(postquery, [user.id], (err, posts) => {
+            connection.query(commentQuery, [postId], (err, comments) => {
                 if (err) {
                     return res.status(500).json(err);
                 }
-                return res.status(200).json(posts);
+                return res.status(200).json(comments);
             });
         });
     } catch (error) {
-        console.error('Error retrieving posts:', error);
-        res.status(500).json({ error: 'Error retrieving posts' });
+        console.error('Error retrieving comments:', error);
+        res.status(500).json({ error: 'Error retrieving comments' });
     }
 };
