@@ -214,7 +214,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const blogPost = document.createElement('div');
                 blogPost.classList.add('blogpost');
 
-                // Create other elements for the blog post...
+                
                 const blogPostImg = document.createElement('div');
                 blogPostImg.classList.add('blog_post_img', 'img');
                 const img = document.createElement('img');
