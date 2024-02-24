@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 blogPostImg.classList.add('blog_post_img', 'img');
                 const img = document.createElement('img');
                 img.src = post.img; // Key
-                blogPostImg.appendChild(img);
+                //blogPostImg.appendChild(img);
 
                 const blogPostInfo = document.createElement('div');
                 blogPostInfo.classList.add('blog_post_info');
@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 const blogPostId = document.createElement('p');
                 blogPostId.classList.add('blog_post_id');
-                blogPostId.textContent = post.postid; // Pass this postid to api
+                //blogPostId.textContent = post.postid; // Pass this postid to api
 
                 const blogPostlike = document.createElement('div');
                 blogPostlike.classList.add('blog_post_like');

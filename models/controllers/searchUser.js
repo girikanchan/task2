@@ -34,7 +34,7 @@ module.exports = async (req, res) => {
                 if (results.length === 0) {
                     return res.status(404).json({ error: 'User not found' });
                 }
-                return res.status(200).json("Profile found");
+                return res.status(200).json(results);
             });
         });
     } catch (error) {
