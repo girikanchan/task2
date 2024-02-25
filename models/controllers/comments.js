@@ -266,9 +266,10 @@ module.exports = async (req, res) => {
 
         console.log('Received postId:', postId);
         
+        console.log('Received commentContent:', commentcontent);
         const commentQuery = 'INSERT INTO CommentsPost (commentcontent, userid, postid, commentdate) VALUES (?, ?, ?, ?)';
         
-        connection.query(commentQuery, [commentcontent, userId, postId, commentDate ], (err, result) => {
+        connection.query(commentQuery, [commentcontent.commentcontent, userId, postId, commentDate ], (err, result) => {
             if (err) {
                 console.error("Error inserting comment:", err);
                 return res.status(500).json({ error: "Internal Server Error" });

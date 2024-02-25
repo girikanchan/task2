@@ -182,6 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 blogPostImg.classList.add('blog_post_img', 'img');
                 const img = document.createElement('img');
                 img.src = post.img;
+                blogPostImg.appendChild(img);
 
                 const blogPostInfo = document.createElement('div');
                 blogPostInfo.classList.add('blog_post_info');
@@ -275,10 +276,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     const commentForm = document.createElement('form');
                     commentForm.setAttribute('method', 'post');
                     commentForm.classList.add('comment-form');
+                    commentForm.id = 'commentForm';
+                    //commentForm.setAttribute('action', `/comments/${post.postid}`);
 
                     const textfield = document.createElement('input');
                     textfield.type = 'text';
-                    textfield.value = '';
+                    //textfield.value = '';
+                    textfield.name = 'commentcontent';
+                    textfield.id = 'commentContent';
                     textfield.placeholder = 'Add Comment here...';
                     textfield.classList.add('comment-input');
                     commentForm.appendChild(textfield);
@@ -319,6 +324,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 blogPostInfo.appendChild(addCommentBtn);
                 blogPost.appendChild(blogPostComment);
+                blogContent.appendChild(blogPost);
             });
         })
         .catch(error => {
