@@ -256,8 +256,6 @@ module.exports = async (req, res) => {
         if (err) {
             return res.status(300).json("Invalid Token");
         }
-        //const { postId, commentContent } = req.body;
-
         
         const commentcontent = req.body;
         const postId = req.params.postId;
