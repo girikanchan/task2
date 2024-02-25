@@ -73,6 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             likebtn.disabled = false;
                         }
                         plike.textContent = updatedPost.like;
+                        location.reload();
                     } catch (error) {
                         console.error('Error updating like:', error);
                         alert('Failed to update like. Please try again later.');
