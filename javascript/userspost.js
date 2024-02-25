@@ -180,3 +180,4 @@ document.addEventListener("DOMContentLoaded", function () {
             alert('Failed to fetch posts. Please try again later.');
         });
 });
+
