@@ -97,9 +97,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 const blogPostComment = document.createElement('div');
                 blogPostComment.classList.add('blog_post_comment');
 
+
                 const commentForm = document.createElement("form");
                 commentForm.setAttribute("method", "post");
-                commentForm.setAttribute("action", "comments");
                 commentForm.setAttribute("id", "commentForm");
 
                 const textfield = document.createElement("input");
@@ -122,12 +122,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 blogContent.appendChild(blogPost);
 
                 const PostcommentForm = document.getElementById('commentForm');
+                
 
                 PostcommentForm.addEventListener('submit', async (event) => {
                     event.preventDefault();
 
                     const postId = post.postid;
-                    const commentContent = document.getElementById('commentContent').value;
+                    //commentForm.setAttribute("action", `/comments/${postId}`);
+                    const commentcontent = document.getElementById('commentContent').value;
 
                     try {
                         const commentsResponse = await fetch(`/comments/${postId}`, {
@@ -135,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            body: JSON.stringify({ commentContent })
+                            body: JSON.stringify({ commentcontent : commentcontent })
                         });
 
                         if (commentsResponse.ok) {

@@ -259,7 +259,7 @@ module.exports = async (req, res) => {
         //const { postId, commentContent } = req.body;
 
         
-        const commentContent = req.body;
+        const commentcontent = req.body;
         const postId = req.params.postId;
         const userId = user.id;
         const commentDate = moment().format("YYYY-MM-DD HH:mm:ss");
@@ -268,7 +268,7 @@ module.exports = async (req, res) => {
         
         const commentQuery = 'INSERT INTO CommentsPost (commentcontent, userid, postid, commentdate) VALUES (?, ?, ?, ?)';
         
-        connection.query(commentQuery, [commentContent, userId, postId, commentDate ], (err, result) => {
+        connection.query(commentQuery, [commentcontent, userId, postId, commentDate ], (err, result) => {
             if (err) {
                 console.error("Error inserting comment:", err);
                 return res.status(500).json({ error: "Internal Server Error" });
