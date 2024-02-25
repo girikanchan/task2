@@ -57,11 +57,7 @@ app.get("/likes",(req,res) => {
 });
 
 
-app.get("/comment",(req,res) => {
-    res.render("comments");
-});
-
-app.get("/seeComments",(req,res) => {
+app.get("/seecomments",(req,res) => {
     res.render("comments");
 });
 

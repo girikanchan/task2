@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             throw new Error('Failed to fetch posts');
         }
         const posts = await response.json();
-        
+
         const blogContainer = document.querySelector('.blogContainer');
         const blogContent = blogContainer.querySelector('.blogContent');
 
@@ -98,13 +98,40 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             blogPost.appendChild(blogPostImg);
             blogPost.appendChild(blogPostInfo);
-            
+
             const SeePostComment = document.createElement('div');
             SeePostComment.classList.add('see_post_comment');
 
             const seeCommentBtn = document.createElement('button');
             seeCommentBtn.textContent = 'See Comment';
             seeCommentBtn.classList.add('see-comment-btn');
+
+            seeCommentBtn.addEventListener('click', () => {
+                const postId = post.postid;
+                const commentsUrl = `/seecomments/${postId}`;
+
+                // Open a new window
+                const newWindow = window.open('', '_blank', 'width=600,height=400,scrollbars=yes,resizable=yes');
+
+                fetch(commentsUrl)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Failed to fetch comments');
+                        }
+                        return response.json();
+                    })
+                    .then(comments => {
+                        
+                        const tableHTML = generateCommentsTable(comments);
+
+                        
+                        newWindow.document.write(tableHTML);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching comments:', error);
+                        newWindow.document.write('Failed to fetch comments. Please try again later.');
+                    });
+            });
 
             SeePostComment.appendChild(seeCommentBtn);
             const commentcount = document.createElement('p');
@@ -129,7 +156,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 commentForm.setAttribute('method', 'post');
                 commentForm.classList.add('comment-form');
                 commentForm.id = 'commentForm';
-                
+
                 const textfield = document.createElement('input');
                 textfield.type = 'text';
                 textfield.name = 'commentcontent';
@@ -181,3 +208,16 @@ document.addEventListener("DOMContentLoaded", async function () {
         alert('Failed to fetch posts. Please try again later.');
     }
 });
+
+function generateCommentsTable(comments) {
+    let tableHTML = '<table border="1">';
+    tableHTML += '<tr><th>Comment ID</th><th>Comment Content</th><th>User ID</th><th>Post ID</th><th>Comment Date</th></tr>';
+
+    comments.forEach(comment => {
+        tableHTML += `<tr><td>${comment.Commentid}</td><td>${comment.commentcontent}</td><td>${comment.userid}</td><td>${comment.postid}</td><td>${comment.commentdate}</td></tr>`;
+    });
+
+    tableHTML += '</table>';
+
+    return tableHTML;
+}
