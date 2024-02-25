@@ -240,7 +240,7 @@ function insertCommentCount(postId, res) {
     });
 }
 */
-const bcrypt = require('bcrypt');
+//const bcrypt = require('bcrypt');
 const connection = require('../db');
 const jwt = require('jsonwebtoken');
 const moment = require('moment');
@@ -256,8 +256,10 @@ module.exports = async (req, res) => {
         if (err) {
             return res.status(300).json("Invalid Token");
         }
+        //const { postId, commentContent } = req.body;
 
-        const { commentContent } = req.body;
+        
+        const commentContent = req.body;
         const postId = req.params.postId;
         const userId = user.id;
         const commentDate = moment().format("YYYY-MM-DD HH:mm:ss");
@@ -266,7 +268,7 @@ module.exports = async (req, res) => {
         
         const commentQuery = 'INSERT INTO CommentsPost (commentcontent, userid, postid, commentdate) VALUES (?, ?, ?, ?)';
         
-        connection.query(commentQuery, [commentContent, userId, postId, commentDate], (err, result) => {
+        connection.query(commentQuery, [commentContent, userId, postId, commentDate ], (err, result) => {
             if (err) {
                 console.error("Error inserting comment:", err);
                 return res.status(500).json({ error: "Internal Server Error" });
