@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
                 return res.status(300).json("Invalid Token");
             }
             
-            const { postId } = req.body; 
+            const { postId } = req.params; 
 
             
             const commentQuery = 'SELECT c.*, u.email as user_id FROM CommentsPost AS c JOIN task2db AS u ON (u.id = c.userid) WHERE c.postid = ? ORDER BY c.commentdate DESC';
@@ -33,3 +33,4 @@ module.exports = async (req, res) => {
         res.status(500).json({ error: 'Error retrieving comments' });
     }
 };
+

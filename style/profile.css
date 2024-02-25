@@ -135,14 +135,14 @@ li {
 /* Aside styles */
 aside {
     position: fixed;
-    top: 70px; /* Adjust as needed based on your navbar height */
+    top: 80px;
     left: 0;
-    width: 170px; /* Same as .mainleft width */
-    height: calc(100vh - 50px); /* Adjust based on your navbar height */
-    background-color: #b9b9dd; /* Change as needed */
-    border-right: 1px solid rgb(38, 37, 37); /* Optional: add border for separation */
-    z-index: 100; /* Ensure the aside is above other content */
-    overflow-y: auto; /* Add scrollbar if content exceeds height */
+    width: 170px; 
+    height: calc(100vh - 50px);
+    background-color: #b9b9dd; 
+    border-right: 1px solid rgb(38, 37, 37); 
+    z-index: 100; 
+    overflow-y: auto;
 }
 
 /* Sidebar navigation styles */
@@ -233,3 +233,4 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #555;
 }
+

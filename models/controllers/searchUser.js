@@ -17,6 +17,7 @@ module.exports = async (req, res) => {
             }
 
             const { username } = req.query; 
+            //const { username } = req.body; 
             console.log(username);
             // Check if username is provided
             if (!username) {

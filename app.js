@@ -57,14 +57,6 @@ app.get("/likes",(req,res) => {
 });
 
 
-app.get("/comment",(req,res) => {
-    res.render("comments");
-});
-
-app.get("/seeComments",(req,res) => {
-    res.render("comments");
-});
-
 app.get("/searchprofile",(req,res) => {
     res.render("profile");
 });

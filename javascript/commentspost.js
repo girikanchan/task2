@@ -1,3 +1,5 @@
+const { post } = require("../routes/users");
+
 const showCommentContainers = document.querySelectorAll(".show_replies");
 
 showCommentContainers.forEach((btn) => btn.addEventListener("click",(e) => {
@@ -17,17 +19,18 @@ document.addEventListener('DOMContentLoaded', function () {
     commmentpost.addEventListener('submit', async function (event) {
         event.preventDefault();
 
-        const commentcontent = document.getElementById('commentcontent').value;
         
+        const commentcontent = document.getElementById('commentcontent').value;
+        const postId = post.postId;
         try {
-            const response = await fetch('/comments', {
+            const response = await fetch(`/comments`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ commentcontent: commentcontent })
+                body: JSON.stringify({ commentcontent: commentcontent, postId : postId })
             });
-
+            
             if (!response.ok) {
                 const errorMessage = await response.json();
                 throw new Error(errorMessage.error);
