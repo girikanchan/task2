@@ -265,6 +265,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 blogPost.appendChild(blogPostInfo);
                 blogContent.appendChild(blogPost);
 
+                const SeePostComment = document.createElement('div');
+                SeePostComment.classList.add('see_post_comment');
+
+                const seeCommentBtn = document.createElement('button');
+                seeCommentBtn.textContent = 'See Comment';
+                seeCommentBtn.classList.add('see-comment-btn');
+
+                SeePostComment.appendChild(seeCommentBtn);
+                blogPostInfo.appendChild(SeePostComment);
+                
+                SeePostComment.appendChild(seeCommentBtn);
+
                 const blogPostComment = document.createElement('div');
                 blogPostComment.classList.add('blog_post_comment');
 
